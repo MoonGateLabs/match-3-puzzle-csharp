@@ -8,7 +8,7 @@ namespace Match3PuzzleCsharp
         static void Main(string[] args)
         {
             int[,] matrix = {  
-                 {1, 1, 1, 4},
+                {1, 1, 1, 4},
                 {2, 3, 1, 3},
                 {2, 3, 1, 2},
                 {5, 4, 1, 5}
