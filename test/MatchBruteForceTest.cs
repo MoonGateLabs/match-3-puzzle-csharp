@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace Match3PuzzleCsharp
@@ -7,27 +8,36 @@ namespace Match3PuzzleCsharp
     class MatchBruteForceTest
     {
         [Test]
-        public void BubbleSort()
+        public void Get3454x4()
         {
             // arrange
-            MatchBruteForce match = new MatchBruteForce();
             int[,] matrix = {  
                 {1, 1, 1},
                 {2, 3, 1},
                 {5, 4, 1}
             };
-            int[,] sortedArray;
+            Dictionary<string, int[]>[] expected = {
+                new Dictionary<string, int[]>{
+                    { "a", new int[]{0,0} },
+                    { "b", new int[]{0,2} }
+                },
+                new Dictionary<string, int[]>{
+                    { "a", new int[]{0,2} },
+                    { "b", new int[]{2,2} }
+                }
+            };
+            Dictionary<string, int[]>[] result;
+            MatchBruteForce match = new MatchBruteForce(matrix);
 
             // act
-            int[,] result = match.get345();
+            result = match.get345();
 
             // assert
-            Assert.AreEqual(1, sortedArray[0]);
-            Assert.AreEqual(2, sortedArray[1]);
-            Assert.AreEqual(3, sortedArray[2]);
-            Assert.AreEqual(4, sortedArray[3]);
-            Assert.AreEqual(5, sortedArray[4]);
-            Assert.AreEqual(10, sortedArray[9]);
+            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected[0]["a"], result[0]["a"]);
+            Assert.AreEqual(expected[0]["b"], result[0]["b"]);
+            Assert.AreEqual(expected[1]["a"], result[1]["a"]);
+            Assert.AreEqual(expected[1]["b"], result[1]["b"]);
         }
     }
 }
