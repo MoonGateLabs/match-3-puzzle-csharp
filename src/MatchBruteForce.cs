@@ -72,16 +72,14 @@ namespace Match3PuzzleCsharp
                         }
                         lastVal = matrix[row, col];
                         streakCol = 1;
-                        streakStartCoords[0] = row;
-                        streakStartCoords[1] = col;
 
-                        streakEndCoords[0] = -1;
-                        streakEndCoords[1] = -1;
+                        streakStartCoords = new int[] { row, col };
+                        streakEndCoords = new int[] { -1, -1 };
                     }
                     if (streakCol >= CONST_MIN_STREAK)
                     {
-                        streakStartCoords[0] = row;
-                        streakStartCoords[1] = col;
+                        streakEndCoords[0] = row;
+                        streakEndCoords[1] = col;
                         if (row == totalRows - 1)
                         {
                             found.Add(
@@ -102,14 +100,14 @@ namespace Match3PuzzleCsharp
             List<Dictionary<string, int[]>> found = new List<Dictionary<string, int[]>>();
             int streakRow = 0;
 
-            for (int row = 0; row < totalColumns; row++)
+            for (int row = 0; row < totalRows; row++)
             {
                 // reset streak
                 streakRow = 0;
                 int lastVal = 0;
                 int[] streakStartCoords = { -1, -1 };
                 int[] streakEndCoords = { -1, -1 };
-                for (int col = 0; col < totalRows; col++)
+                for (int col = 0; col < totalColumns; col++)
                 {
                     if (lastVal == matrix[row, col])
                     {
@@ -129,17 +127,15 @@ namespace Match3PuzzleCsharp
                         }
                         lastVal = matrix[row, col];
                         streakRow = 1;
-                        streakStartCoords[0] = row;
-                        streakStartCoords[1] = col;
 
-                        streakEndCoords[0] = -1;
-                        streakEndCoords[1] = -1;
+                        streakStartCoords = new int[] { row, col };
+                        streakEndCoords = new int[] { -1, -1 };
                     }
                     if (streakRow >= CONST_MIN_STREAK)
                     {
-                        streakStartCoords[0] = row;
-                        streakStartCoords[1] = col;
-                        if (row == totalRows - 1)
+                        streakEndCoords[0] = row;
+                        streakEndCoords[1] = col;
+                        if (col == totalColumns - 1)
                         {
                             found.Add(
                                new Dictionary<string, int[]>{
